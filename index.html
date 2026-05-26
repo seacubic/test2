@@ -1,441 +1,224 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>장미공원 | 한눈에 보는 테마파크</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장미공원 | 아름다운 장미와 휴식이 있는 곳</title>
     <style>
-      :root {
-        --bg: #fff8f5;
-        --text: #2b1a1a;
-        --accent: #c14b6d;
-        --accent-2: #f4ccd4;
-        --surface: rgba(255, 255, 255, 0.9);
-        --shadow: 0 24px 80px rgba(77, 34, 41, 0.12);
-        font-family: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      }
-
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        background: linear-gradient(180deg, #fff8f5 0%, #f5e3e3 100%);
-        color: var(--text);
-        line-height: 1.6;
-      }
-
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        backdrop-filter: blur(12px);
-        background: rgba(255, 248, 245, 0.92);
-        border-bottom: 1px solid rgba(197, 75, 109, 0.12);
-      }
-
-      .navbar {
-        max-width: 1180px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 18px 24px;
-      }
-
-      .brand {
-        font-weight: 800;
-        letter-spacing: -0.04em;
-        font-size: 1.15rem;
-      }
-
-      .brand span {
-        color: var(--accent);
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 24px;
-        flex-wrap: wrap;
-      }
-
-      .nav-links a {
-        text-decoration: none;
-        color: var(--text);
-        font-size: 0.95rem;
-        transition: color 0.2s ease;
-      }
-
-      .nav-links a:hover {
-        color: var(--accent);
-      }
-
-      .hero {
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        padding: 80px 24px 120px;
-        text-align: center;
-        background-image:
-          radial-gradient(circle at top left, rgba(193, 75, 109, 0.12), transparent 22%),
-          radial-gradient(circle at bottom right, rgba(241, 183, 193, 0.18), transparent 18%);
-      }
-
-      .hero h1 {
-        font-size: clamp(2.5rem, 5vw, 4.5rem);
-        letter-spacing: -0.05em;
-        margin-bottom: 24px;
-      }
-
-      .hero p {
-        max-width: 720px;
-        margin: 0 auto 32px;
-        font-size: 1.05rem;
-        color: #4f3536;
-      }
-
-      .hero .cta {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        padding: 16px 28px;
-        border-radius: 999px;
-        background: var(--accent);
-        color: #fff;
-        text-decoration: none;
-        font-weight: 700;
-        box-shadow: 0 20px 55px rgba(193, 75, 109, 0.18);
-      }
-
-      main {
-        max-width: 1180px;
-        margin: 0 auto;
-        padding: 0 24px 72px;
-      }
-
-      section {
-        padding: 72px 0;
-      }
-
-      .section-title {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        color: var(--accent);
-        font-weight: 700;
-        margin-bottom: 18px;
-      }
-
-      .section-title::before {
-        content: "🌹";
-      }
-
-      .section-heading {
-        font-size: clamp(2rem, 2.5vw, 3rem);
-        margin-bottom: 16px;
-      }
-
-      .section-text {
-        max-width: 760px;
-        color: #5b3c42;
-      }
-
-      .cards {
-        display: grid;
-        gap: 24px;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        margin-top: 36px;
-      }
-
-      .card {
-        padding: 28px;
-        border-radius: 32px;
-        background: var(--surface);
-        box-shadow: var(--shadow);
-      }
-
-      .card h3 {
-        margin-bottom: 14px;
-        font-size: 1.2rem;
-      }
-
-      .card p {
-        color: #5a3e43;
-      }
-
-      .gallery {
-        display: grid;
-        gap: 18px;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        margin-top: 30px;
-      }
-
-      .gallery-item {
-        border-radius: 24px;
-        min-height: 220px;
-        background-size: cover;
-        background-position: center;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .gallery-item::after {
-        content: attr(data-label);
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 16px;
-        font-weight: 700;
-        color: #fff;
-        background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.6));
-      }
-
-      .highlight {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 32px;
-        align-items: center;
-        margin-top: 30px;
-      }
-
-      .highlight img {
-        width: 100%;
-        border-radius: 32px;
-        object-fit: cover;
-        min-height: 360px;
-      }
-
-      .info-grid {
-        display: grid;
-        gap: 24px;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        margin-top: 30px;
-      }
-
-      .info-card {
-        padding: 24px;
-        border-radius: 28px;
-        background: #fff;
-        border: 1px solid rgba(193, 75, 109, 0.12);
-      }
-
-      .info-card h4 {
-        margin-bottom: 12px;
-        font-size: 1.05rem;
-      }
-
-      .info-card p {
-        color: #5b3c42;
-      }
-
-      .contact {
-        background: linear-gradient(135deg, #f9e2e7 0%, #fff7f5 100%);
-        border-radius: 36px;
-        padding: 42px 36px;
-        box-shadow: var(--shadow);
-      }
-
-      .contact form {
-        display: grid;
-        gap: 18px;
-        margin-top: 24px;
-      }
-
-      .contact label {
-        font-weight: 700;
-        font-size: 0.95rem;
-      }
-
-      .contact input,
-      .contact textarea {
-        width: 100%;
-        border: 1px solid rgba(197, 75, 109, 0.18);
-        border-radius: 18px;
-        padding: 16px 18px;
-        font-size: 1rem;
-        background: #fff;
-        color: #3e282b;
-      }
-
-      .contact textarea {
-        min-height: 140px;
-        resize: vertical;
-      }
-
-      .contact button {
-        width: fit-content;
-        padding: 16px 32px;
-        border: none;
-        border-radius: 999px;
-        background: var(--accent);
-        color: #fff;
-        font-weight: 700;
-        cursor: pointer;
-        transition: transform 0.2s ease;
-      }
-
-      .contact button:hover {
-        transform: translateY(-1px);
-      }
-
-      footer {
-        padding: 32px 0 18px;
-        text-align: center;
-        color: #695553;
-        font-size: 0.95rem;
-      }
-
-      @media (max-width: 900px) {
-        .highlight {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 680px) {
-        .navbar {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 14px;
+        :root {
+            --primary-rose: #e91e63;
+            --secondary-rose: #fce4ec;
+            --dark-green: #2e7d32;
+            --light-green: #e8f5e9;
+            --text-color: #333;
+            --bg-color: #ffffff;
         }
 
-        .nav-links {
-          gap: 16px;
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-rose);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1496062031456-07b8f162a322?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background-color: var(--primary-rose);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #c2185b;
         }
 
         section {
-          padding: 56px 0;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-      }
+
+        h2 {
+            text-align: center;
+            color: var(--primary-rose);
+            margin-bottom: 3rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--secondary-rose);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .info {
+            background-color: var(--light-green);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav ul { display: none; }
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <header>
-      <div class="navbar">
-        <a class="brand" href="#home">장미<span>공원</span></a>
-        <nav class="nav-links">
-          <a href="#about">소개</a>
-          <a href="#attractions">즐길거리</a>
-          <a href="#visit">방문정보</a>
-          <a href="#contact">문의</a>
+        <nav>
+            <div class="logo">🌹 장미공원</div>
+            <ul>
+                <li><a href="#about">소개</a></li>
+                <li><a href="#gallery">갤러리</a></li>
+                <li><a href="#info">이용안내</a></li>
+            </ul>
         </nav>
-      </div>
     </header>
 
-    <section class="hero" id="home">
-      <div>
-        <p class="section-title">한 장의 페이지로 만나는 장미공원</p>
-        <h1>사계절 장미 향기로 가득한 쉼터</h1>
-        <p>
-          도시 속 자연을 품은 장미공원은 가족과 연인이 함께 걷기 좋은 정원, 계절별 꽃 축제,
-          감성 카페가 있는 특별한 공간입니다.
-        </p>
-        <a class="cta" href="#visit">지금 방문 계획하기</a>
-      </div>
+    <div class="hero">
+        <h1>도심 속 장미의 향연</h1>
+        <p>수만 송이 장미와 함께하는 힐링의 시간</p>
+        <a href="#info" class="btn">방문하기</a>
+    </div>
+
+    <section id="about">
+        <h2>공원 소개</h2>
+        <div class="features">
+            <div class="feature-card">
+                <h3>다양한 품종</h3>
+                <p>전 세계 200여 종의 진귀한 장미들이 화려한 자태를 뽐냅니다.</p>
+            </div>
+            <div class="feature-card">
+                <h3>테마 정원</h3>
+                <p>로맨틱 가든, 비밀의 정원 등 다양한 테마로 구성된 산책로가 있습니다.</p>
+            </div>
+            <div class="feature-card">
+                <h3>포토존</h3>
+                <p>인생샷을 남길 수 있는 아름다운 포토존이 곳곳에 마련되어 있습니다.</p>
+            </div>
+        </div>
     </section>
 
-    <main>
-      <section id="about">
-        <p class="section-title">공원 소개</p>
-        <h2 class="section-heading">꽃과 휴식이 어우러진 특별한 공원</h2>
-        <p class="section-text">
-          장미공원은 5만 평 규모의 녹지 공간에 120종 이상의 장미를 심어놓은 테마 공원입니다.
-          잔디광장, 산책로, 야외 공연장을 갖추고 있어 사계절 내내 즐길 수 있는 힐링 공간을 제공합니다.
-        </p>
-      </section>
-
-      <section id="attractions">
-        <p class="section-title">주요 시설</p>
-        <h2 class="section-heading">여기만 와도 하루가 즐거운 이유</h2>
-        <div class="cards">
-          <article class="card">
-            <h3>장미 정원</h3>
-            <p>다양한 품종의 장미가 빼곡히 피어나는 테마 정원입니다. 포토 스팟과 산책로가 연결되어 있습니다.</p>
-          </article>
-          <article class="card">
-            <h3>야외 공연장</h3>
-            <p>계절마다 음악회, 플리마켓, 플라워 클래스가 열리는 개방형 공연 공간입니다.</p>
-          </article>
-          <article class="card">
-            <h3>휴식 카페</h3>
-            <p>장미 향이 나는 음료와 디저트를 즐기며 공원을 내려다볼 수 있는 카페입니다.</p>
-          </article>
+    <section id="gallery">
+        <h2>갤러리</h2>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1548610762-65603791113a?auto=format&fit=crop&w=400&q=80" alt="Rose 1">
+            <img src="https://images.unsplash.com/photo-1496062031456-07b8f162a322?auto=format&fit=crop&w=400&q=80" alt="Rose 2">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80" alt="Rose 3">
+            <img src="https://images.unsplash.com/photo-1534237710431-e2fc698436d0?auto=format&fit=crop&w=400&q=80" alt="Rose 4">
         </div>
-      </section>
+    </section>
 
-      <section>
-        <div class="highlight">
-          <div>
-            <p class="section-title">포토존</p>
-            <h2 class="section-heading">당신의 추억을 담는 장미 풍경</h2>
-            <p class="section-text">
-              잔디밭, 분수, 아치형 장미터널로 이어지는 코스는 언제든지 인생샷을 찍기 좋은 곳입니다.
-              봄과 가을에는 야간 조명까지 더해져 로맨틱한 분위기를 완성합니다.
-            </p>
-            <div class="info-grid">
-              <div class="info-card">
-                <h4>가족 나들이</h4>
-                <p>어린이 놀이터와 산책로가 있어 아이부터 어른까지 모두 편안하게 이용할 수 있습니다.</p>
-              </div>
-              <div class="info-card">
-                <h4>커플 데이트</h4>
-                <p>분위기 좋은 산책길과 로맨틱한 야간 조명 덕분에 데이트 장소로 인기입니다.</p>
-              </div>
-              <div class="info-card">
-                <h4>사진 촬영</h4>
-                <p>웨딩, 프로필, 인생샷까지 다양하게 활용할 수 있는 아름다운 배경이 가득합니다.</p>
-              </div>
-            </div>
-          </div>
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80" alt="장미공원 이미지" />
+    <section id="info">
+        <h2>이용안내</h2>
+        <div class="info">
+            <p><strong>📍 위치:</strong> 서울특별시 중구 장미로 123 (장미공원)</p>
+            <p><strong>⏰ 운영시간:</strong> 09:00 ~ 21:00 (연중무휴)</p>
+            <p><strong>🎫 입장료:</strong> 무료 (일부 체험 프로그램 유료)</p>
+            <p><strong>📞 문의:</strong> 02-1234-5678</p>
         </div>
-      </section>
-
-      <section id="visit">
-        <p class="section-title">방문 정보</p>
-        <h2 class="section-heading">찾아오시는 길과 운영 안내</h2>
-        <p class="section-text">
-          장미공원은 매일 오전 9시부터 오후 8시까지 열립니다. 주차 공간과 대중교통 접근성이 좋아 편리하게 방문하실 수 있습니다.
-        </p>
-        <div class="cards">
-          <article class="card">
-            <h3>찾아오시는 길</h3>
-            <p>도심에서 30분 거리에 위치한 장미공원은 장미역 2번 출구에서 도보 12분, 무료 셔틀버스를 운영합니다.</p>
-          </article>
-          <article class="card">
-            <h3>운영 시간</h3>
-            <p>매일 09:00부터 20:00까지 오픈하며, 야간 조명 시즌에는 22:00까지 연장 운영합니다.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="contact">
-        <p class="section-title">문의</p>
-        <h2 class="section-heading">더 궁금한 점이 있나요?</h2>
-        <p class="section-text">
-          행사 문의나 단체 예약은 아래 양식을 통해 연락주세요. 빠르게 답변해드리겠습니다.
-        </p>
-        <div class="contact">
-          <form>
-            <label for="name">이름</label>
-            <input type="text" id="name" name="name" placeholder="홍길동" />
-
-            <label for="email">이메일</label>
-            <input type="email" id="email" name="email" placeholder="example@email.com" />
-
-            <label for="message">문의 내용</label>
-            <textarea id="message" name="message" placeholder="여기에 내용을 입력해주세요..."></textarea>
-
-            <button type="submit">문의하기</button>
-          </form>
-        </div>
-      </section>
-    </main>
+    </section>
 
     <footer>
-      &copy; 2026 장미공원. <span>빛나는 하루를 선물합니다.</span>
+        <p>&copy; 2026 장미공원. All rights reserved.</p>
     </footer>
-  </body>
+</body>
 </html>
